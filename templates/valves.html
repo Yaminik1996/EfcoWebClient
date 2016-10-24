@@ -1,0 +1,65 @@
+
+{%extends "layout/header.html"%}
+{% block title %}Valves{% endblock %}
+{% block content%}
+<div class="container text-center">
+	<div class="alert alert-dismissible alert-info" style="display:none;" name="alert-box">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<p name="message"></p>
+	</div>
+	<div class="row">
+
+		<div class="col-lg-12">
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title clearfix">Search Valves
+						<!-- <button type="button" name="deleteValve" id="deleteValve" class="btn-xs btn-danger pull-right">Delete Valve</button>
+						<button type="button" name="createValve" class="btn-xs btn-success pull-right" data-toggle="modal" data-target="#createModal">Create Valve</button> -->
+					</h3>
+				</div>
+				<div class="panel-body">
+
+					<table class="table table-bordered table-responsive table-hovered table-condensed" id="valves">
+						<thead>
+							<tr>
+								<td>Tag No.</td>
+								<td>Valve Type</td>
+								<td>Valve Size</td>
+								<td>Location</td>
+								<td>Customer</td>
+								<td>Manufacturer</td>
+								<td>Serial Number</td>
+								<td>Show</td>
+								<!-- <td>Delete</td> -->
+							</tr>
+						</thead>
+						<tbody>
+
+							{%for row in valves%}
+							<tr>
+
+								<td>{{row['valve_id']}}</td>
+								<td>{%if row['valve_type']=="1"%}Safety Valve{%else%}Shut off{%endif%}</td>
+								<td>{{row['rev_no']}}</td>
+								<td>{{row['install_locations']}}</td>
+								<td>{{row['customer']}}</td>
+								<td>{{row['manufacturer']}}</td>
+								<td>{{row['manufacturer_no']}}</td>
+								<td><a href="/{%if current_page=='RPSLvalves'%}rpslvalve{%elif current_page=='BTSLvalves'%}btslvalve{%endif%}/{{row['valve_id']}}" class="btn-sm btn-info" style="text-decoration:none;"><i class="fa fa-check"></i>Show valve</a></td>
+							</tr>
+							{%endfor%}
+
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+
+	{% endblock%}
